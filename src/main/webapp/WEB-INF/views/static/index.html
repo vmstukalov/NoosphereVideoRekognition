@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Извлечение знаменитых людей в фильмах</title>
 </head>
 <body>
 
-<form>
+<form method="post" th:action="@{/parser/parse}">
     <h1>Извлечение лиц из видео</h1>
     <label for="link">Ссылка на ноосферу: </label>
     <input type="text" name="link" id="link"> <br/>

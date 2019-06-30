@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private String[] postIgnoring =
             new String[] {
-                    "/category/add*",
+                    "/parser/**",
             };
 
     private String[] accessForAdmin =
