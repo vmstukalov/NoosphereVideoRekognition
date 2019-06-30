@@ -20,7 +20,7 @@ public class ParserController {
     private ParserService parserService;
     private VideoService videoService;
 
-    @PostMapping("parse")
+    @PostMapping(value = "parse", produces = "application/json")
     @ResponseBody
     public Video parse(@RequestParam("link") String link) {
 
@@ -35,10 +35,12 @@ public class ParserController {
         video.setNooSphereUrl(link);
         video.setFileUrl(videoUrl);
 
-        videoService.save(video);
+        //videoService.save(video);
 
         return video;
     }
+
+
 
     @Autowired
     public void setNooSphereUrlService(NooSphereUrlService nooSphereUrlService) {

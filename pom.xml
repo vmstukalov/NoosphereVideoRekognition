@@ -12,6 +12,16 @@
 
     <build>
         <finalName>ROOT</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 
@@ -361,6 +371,15 @@
             <artifactId>ffmpeg-platform</artifactId>
             <version>4.1-1.4.4</version>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-rekognition -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-rekognition</artifactId>
+            <version>1.11.584</version>
+        </dependency>
+
 
     </dependencies>
 
