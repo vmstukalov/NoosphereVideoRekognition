@@ -46,7 +46,7 @@ public class ParserController {
 
         try {
             videoService.downloadUsingStream(video, savePath);
-            videoService.separateToFrames(video, pathToFrames, 60);
+            videoService.separateToFrames(video, pathToFrames, 60, true);
         } catch (Exception e){
             //return "error: Ошибка скачивания видео";
             e.printStackTrace();

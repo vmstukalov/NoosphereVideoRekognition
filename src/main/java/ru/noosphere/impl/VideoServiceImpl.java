@@ -30,14 +30,12 @@ public class VideoServiceImpl implements VideoService {
     private ImageRepo imageRepo;
 
 
-    public List<String> separateToFrames(Video video, String pathToSaveFrames, int everyFrame) throws IOException {
+    public List<String> separateToFrames(Video video, String pathToSaveFrames, int everyFrame, boolean test) throws IOException {
 
             File videoFile = new File(video.getPath());
 
             FFmpegFrameGrabber g = new FFmpegFrameGrabber(videoFile);
             g.start();
-
-
 
             System.out.println(g.getFrameNumber());
             System.out.println(g.getLengthInFrames());
@@ -55,6 +53,11 @@ public class VideoServiceImpl implements VideoService {
 
             Java2DFrameConverter converter = new Java2DFrameConverter();
             for (int i = 0; i < frameNumbers; i = i + everyFrame) {
+                if (test){
+                    if (i < 23 * everyFrame || i > 70 * everyFrame){
+                        continue;
+                    }
+                }
                 if (i > 0) g.setFrameNumber(i);
                     Frame frame = g.grabImage();
 

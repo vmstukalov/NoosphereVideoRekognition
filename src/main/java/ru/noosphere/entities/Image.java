@@ -1,8 +1,10 @@
 package ru.noosphere.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "image")
@@ -10,6 +12,12 @@ public class Image {
     private Long id;
     private String path;
     private Video video;
+    private List<Person> personList;
+    private Boolean scanned;
+
+    public Image() {
+        this.scanned = false;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,5 +48,27 @@ public class Image {
 
     public void setVideo(Video video) {
         this.video = video;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "image_person", joinColumns = @JoinColumn(name = "image"), inverseJoinColumns = @JoinColumn(name = "person"))
+    @JsonManagedReference
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<Person> personList) {
+        this.personList = personList;
+    }
+
+    public void addPerson(Person person){personList.add(person);}
+
+    @Column(name = "scanned")
+    public Boolean getScanned() {
+        return scanned;
+    }
+
+    public void setScanned(Boolean scanned) {
+        this.scanned = scanned;
     }
 }

@@ -1,6 +1,10 @@
 package ru.noosphere.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "person")
@@ -10,6 +14,7 @@ public class Person {
     private String name;
     private String imdb;
     private String celebrityId;
+    private List<Image> imageList;
 
     @Id
     @Column(name = "id")
@@ -48,4 +53,17 @@ public class Person {
     public void setCelebrityId(String celebrityId) {
         this.celebrityId = celebrityId;
     }
+
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "image_person", joinColumns = @JoinColumn(name = "person"), inverseJoinColumns = @JoinColumn(name = "image"))
+    @JsonBackReference
+    public List<Image> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
+    }
+
 }
