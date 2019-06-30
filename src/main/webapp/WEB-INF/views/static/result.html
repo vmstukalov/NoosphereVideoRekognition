@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты</title>
+</head>
+<body>
+
+<h1>В этом видео найдены</h1>
+<ul>
+    <li th:each="person : ${personList}"><a th:href="${person.imdb}" th:text="${person.name}"></a></li>
+</ul>
+</body>
+</html>

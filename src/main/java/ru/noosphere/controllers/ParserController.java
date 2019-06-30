@@ -3,6 +3,7 @@ package ru.noosphere.controllers;
 import org.bytedeco.javacv.FrameFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,8 +29,7 @@ public class ParserController {
     private RecognizerService recognizerService;
 
     @PostMapping(value = "parse", produces = "application/json")
-    @ResponseBody
-    public List<Person> parse(@RequestParam("link") String link) {
+    public String parse(@RequestParam("link") String link, Model uiModel) {
 
         List<Person> personList = new ArrayList<>();
 
@@ -77,7 +77,9 @@ public class ParserController {
 
         }
 
-        return personList;
+        uiModel.addAttribute("personList", personList);
+        return "static/result";
+        //return personList;
     }
 
 
