@@ -16,6 +16,7 @@ import ru.noosphere.services.repo.PersonRepo;
 
 import java.io.*;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("recognizerService")
@@ -23,7 +24,9 @@ public class RecognizerServiceImpl implements RecognizerService {
 
     private PersonRepo personRepo;
 
-    public void recognize(String filePath) throws IOException {
+    public List<Person> recognize(String filePath) throws IOException {
+
+        List<Person> personList = new ArrayList<>();
 
         BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIA4ZLQMXII7XQNESGG", "FrCQxPKvReoYScaeugBmu1XeqCjalDvrJ9DjX/WO");
 
@@ -76,11 +79,13 @@ public class RecognizerServiceImpl implements RecognizerService {
                 }
 
                 personRepo.save(person);
+                personList.add(person);
             } catch (Exception ignored){ }
 
         }
         System.out.println(result.getUnrecognizedFaces().size() + " face(s) were unrecognized.");
 
+        return personList;
     }
 
     @Autowired

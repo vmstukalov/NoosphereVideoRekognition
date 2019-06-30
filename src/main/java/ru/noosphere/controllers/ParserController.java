@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.noosphere.entities.Image;
 import ru.noosphere.entities.NooSphereURL;
+import ru.noosphere.entities.Person;
 import ru.noosphere.entities.Video;
 import ru.noosphere.services.*;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,7 +29,9 @@ public class ParserController {
 
     @PostMapping(value = "parse", produces = "application/json")
     @ResponseBody
-    public Video parse(@RequestParam("link") String link) {
+    public List<Person> parse(@RequestParam("link") String link) {
+
+        List<Person> personList = new ArrayList<>();
 
         NooSphereURL nooSphereURL = new NooSphereURL();
         nooSphereURL.setValue(link);
@@ -60,12 +64,11 @@ public class ParserController {
         for (Image image : images) {
 
             try {
-                System.out.println("Распознаем: "+ image.getPath());
-
-                //TODO: сделать scanned = true
-
+                //personList = recognizerService.recognize(image.getPath());
+                System.out.println("Распознаем: " + image.getPath());
+                image.setScanned(true);
                 imageService.save(image);
-                //recognizerService.recognize(image.getPath());
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -74,7 +77,7 @@ public class ParserController {
 
         }
 
-        return video;
+        return personList;
     }
 
 

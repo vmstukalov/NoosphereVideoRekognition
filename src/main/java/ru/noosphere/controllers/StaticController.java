@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.noosphere.entities.Person;
 import ru.noosphere.services.RecognizerService;
 import ru.noosphere.services.VideoService;
 
@@ -27,14 +28,14 @@ public class StaticController {
 
     @GetMapping("recognize")
     @ResponseBody
-    public String recognize() {
+    public List<Person> recognize() {
 
         try {
-            recognizerService.recognize("/Users/vitaly/Downloads/k.jpg");
-            return "ok";
+            return recognizerService.recognize("/Users/vitaly/Downloads/k.jpg");
+
         } catch (Exception e) {
             e.printStackTrace();
-            return "fail";
+            return new ArrayList<>();
         }
 
 
