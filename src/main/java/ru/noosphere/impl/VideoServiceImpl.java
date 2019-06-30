@@ -5,6 +5,7 @@ import org.bytedeco.javacv.Frame;
 import org.bytedeco.javacv.Java2DFrameConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.noosphere.entities.Video;
 import ru.noosphere.services.VideoService;
 import ru.noosphere.services.repo.VideoRepo;
 
@@ -22,6 +23,8 @@ import java.util.Map;
 public class VideoServiceImpl implements VideoService {
 
     private VideoRepo videoRepo;
+
+
 
     public List<String> separateToFrames(File video, String pathToSaveFrames, int sleep) throws IOException {
 
@@ -76,6 +79,10 @@ public class VideoServiceImpl implements VideoService {
         }
         fis.close();
         bis.close();
+    }
+
+    public Video save(Video video) {
+        return videoRepo.save(video);
     }
 
     @Autowired
