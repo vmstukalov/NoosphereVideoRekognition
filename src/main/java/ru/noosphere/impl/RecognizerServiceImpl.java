@@ -18,6 +18,7 @@ import java.io.*;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service("recognizerService")
 public class RecognizerServiceImpl implements RecognizerService {
@@ -76,6 +77,7 @@ public class RecognizerServiceImpl implements RecognizerService {
                 //ставится последний url
                 for (String url: celebrity.getUrls()){
                     System.out.println(url);
+                    person.setImdb(url);
                 }
 
                 personRepo.save(person);

@@ -31,7 +31,7 @@ public class ParserServiceImpl implements ParserService {
             response = Jsoup.connect(linkOrigin).execute();
 
             Document videoPage = response.parse();
-            videoUrl = videoPage.selectFirst("link[itemprop='contentUrl']").attr("href");
+            videoUrl = videoPage.selectFirst("link[itemprop='embedUrl']").attr("href");
             return videoUrl;
 
         } catch (IOException e) {
