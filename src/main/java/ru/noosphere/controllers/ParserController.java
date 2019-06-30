@@ -62,7 +62,7 @@ public class ParserController {
             try {
                 System.out.println("Распознаем: "+ image.getPath());
 
-                //TODO: сделать scanned = true
+                image.setScanned(true);
 
                 imageService.save(image);
                 //recognizerService.recognize(image.getPath());
