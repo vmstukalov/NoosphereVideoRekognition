@@ -21,42 +21,6 @@ public class StaticController {
         return "static/index";
     }
 
-    @GetMapping("rek")
-    @ResponseBody
-    public String rek(){
-        String video = "/Users/g3/Downloads/cut3.mp4";
-        File videoFile = new File(video);
-        String pathToFrames = "/Users/g3/Downloads/frames/" + videoFile.getName() + "/";
-        List<String> fileNames = new ArrayList<String>();
-        try {
-            fileNames = videoService.separateToFrames(videoFile, pathToFrames, 1000);
-        } catch (Exception e){
-            e.printStackTrace();
-            return "error";
-        }
-
-        //дальше можем брать каждый пятый из списка
-        //fileNames.get(i);
-
-        return "ok";
-    }
-
-    @GetMapping("download")
-    @ResponseBody
-    public String download(){
-        String url = "https://archive.org/download/OurGangSilentHighSociety1924/HighSociety.mp4";
-        File file = new File(url);
-        try {
-            videoService.downloadUsingStream(url, "/Users/g3/Downloads/" + file.getName());
-        } catch (Exception e){
-            e.printStackTrace();
-            return "error";
-        }
-
-        return "ok";
-
-    }
-
     @Autowired
     public void setVideoService(VideoService videoService) {
         this.videoService = videoService;
