@@ -41,7 +41,6 @@ import java.net.UnknownHostException;
 import java.util.*;
 
 
-
 @Configuration
 @EnableWebMvc
 @EnableJpaRepositories("ru.noosphere.services")
@@ -66,7 +65,6 @@ public class App extends WebMvcConfigurerAdapter {
                 .addResourceLocations(
                         "file:/usr/local/apache-tomcat-9.0.0.M10/bin/noosphere/images/",
                         "file:/root/noosphere/images/").setCachePeriod(60 * 60);
-
 
 
     }
@@ -122,17 +120,14 @@ public class App extends WebMvcConfigurerAdapter {
             if (ip.getHostAddress().equals("89.223.29.145")) {
                 localhost = false;
             }
-        } catch (UnknownHostException ignored) {}
-
-        if (localhost) {
-            dataSource.setUrl("jdbc:mysql://127.0.0.1:8889/noosphere65?useSSL=false&amp;useUnicode=yes&amp;characterEncoding=UTF-8");
-            dataSource.setUsername("admin");
-            dataSource.setPassword("qw198910");
-        } else {
-            dataSource.setUrl("jdbc:mysql://0.0.0.0:3306/noosphere?useSSL=false&amp;useUnicode=yes&amp;characterEncoding=UTF-8");
-            dataSource.setUsername("");
-            dataSource.setPassword("");
+        } catch (UnknownHostException ignored) {
         }
+
+
+        dataSource.setUrl("jdbc:mysql://89.223.95.165:3306/noosphere?useSSL=false&amp;useUnicode=yes&amp;characterEncoding=UTF-8");
+        dataSource.setUsername("admin");
+        dataSource.setPassword("bfyq3iblf@!_A3");
+
         return dataSource;
     }
 
@@ -221,7 +216,6 @@ public class App extends WebMvcConfigurerAdapter {
     public DeviceHandlerMethodArgumentResolver deviceHandlerMethodArgumentResolver() {
         return new DeviceHandlerMethodArgumentResolver();
     }
-
 
 
     @Bean(name = "multipartResolver")

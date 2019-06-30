@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="noosphere@localhost" uuid="0bc9e9a1-0254-4055-90aa-8b8998d9cc84">
+    <data-source source="LOCAL" name="noosphere@89.223.95.165" uuid="c9280fd4-38ee-41f7-9164-eaf4d9953f43">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:8889/noosphere</jdbc-url>
+      <jdbc-url>jdbc:mysql://89.223.95.165:3306/noosphere</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
