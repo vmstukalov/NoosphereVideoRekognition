@@ -8,8 +8,11 @@ import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
 import com.amazonaws.services.rekognition.model.*;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.noosphere.entities.Person;
 import ru.noosphere.services.RecognizerService;
+import ru.noosphere.services.repo.PersonRepo;
 
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -17,6 +20,8 @@ import java.util.List;
 
 @Service("recognizerService")
 public class RecognizerServiceImpl implements RecognizerService {
+
+    private PersonRepo personRepo;
 
     public void recognize(String filePath) throws IOException {
 
@@ -59,30 +64,27 @@ public class RecognizerServiceImpl implements RecognizerService {
                 System.out.println(url);
             }
             System.out.println();
+
+            try {
+                Person person = new Person();
+                person.setCelebrityId(celebrity.getId());
+                person.setName(celebrity.getName());
+
+                //ставится последний url
+                for (String url: celebrity.getUrls()){
+                    System.out.println(url);
+                }
+
+                personRepo.save(person);
+            } catch (Exception ignored){ }
+
         }
         System.out.println(result.getUnrecognizedFaces().size() + " face(s) were unrecognized.");
-        /*
 
-        DetectLabelsRequest request = new DetectLabelsRequest()
-                .withImage(new Image()
-                        .withBytes(imageBytes))
-                .withMaxLabels(10)
-                .withMinConfidence(77F);
+    }
 
-
-        try {
-
-            DetectLabelsResult result = rekognitionClient.detectLabels(request);
-            List<Label> labels = result.getLabels();
-
-            System.out.println("Detected labels for " + filePath);
-            for (Label label: labels) {
-                System.out.println(label.getName() + ": " + label.getConfidence().toString());
-            }
-
-        } catch (AmazonRekognitionException e) {
-            e.printStackTrace();
-        }
-        */
+    @Autowired
+    public void setPersonRepo(PersonRepo personRepo) {
+        this.personRepo = personRepo;
     }
 }
