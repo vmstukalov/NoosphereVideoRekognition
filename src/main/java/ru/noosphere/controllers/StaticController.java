@@ -29,7 +29,7 @@ public class StaticController {
         String pathToFrames = "/Users/g3/Downloads/frames/" + videoFile.getName() + "/";
         List<String> fileNames = new ArrayList<String>();
         try {
-            fileNames = videoService.separateToFrames(videoFile, pathToFrames, 10);
+            fileNames = videoService.separateToFrames(videoFile, pathToFrames, 1000);
         } catch (Exception e){
             e.printStackTrace();
             return "error";
