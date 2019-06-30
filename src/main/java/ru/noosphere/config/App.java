@@ -127,7 +127,7 @@ public class App extends WebMvcConfigurerAdapter {
         if (localhost) {
             dataSource.setUrl("jdbc:mysql://127.0.0.1:8889/noosphere?useSSL=false&amp;useUnicode=yes&amp;characterEncoding=UTF-8");
             dataSource.setUsername("admin");
-            dataSource.setPassword("123456");
+            dataSource.setPassword("qw198910");
         } else {
             dataSource.setUrl("jdbc:mysql://0.0.0.0:3306/noosphere?useSSL=false&amp;useUnicode=yes&amp;characterEncoding=UTF-8");
             dataSource.setUsername("");
