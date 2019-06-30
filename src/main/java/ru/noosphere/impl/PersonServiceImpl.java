@@ -20,6 +20,11 @@ public class PersonServiceImpl implements PersonService {
         return personRepo.save(person);
     }
 
+    @Override
+    public Person fingByCelebrityId(String id) {
+        return null;
+    }
+
     @Autowired
     public void setPersonRepo(PersonRepo personRepo) {
         this.personRepo = personRepo;
