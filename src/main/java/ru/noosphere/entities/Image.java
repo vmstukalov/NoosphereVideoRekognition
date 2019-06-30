@@ -63,6 +63,8 @@ public class Image {
 
     public void addPerson(Person person){personList.add(person);}
 
+    public void addAllPersons(List<Person> persons){personList.addAll(persons);}
+
     @Column(name = "scanned")
     public Boolean getScanned() {
         return scanned;

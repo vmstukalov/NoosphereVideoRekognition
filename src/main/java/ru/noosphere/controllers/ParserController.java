@@ -64,9 +64,10 @@ public class ParserController {
         for (Image image : images) {
 
             try {
-                //personList = recognizerService.recognize(image.getPath());
+                personList = recognizerService.recognize(image.getPath());
                 System.out.println("Распознаем: " + image.getPath());
                 image.setScanned(true);
+                image.addAllPersons(personList);
                 imageService.save(image);
 
             } catch (Exception e) {
