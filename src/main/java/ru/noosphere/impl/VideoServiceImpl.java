@@ -54,7 +54,7 @@ public class VideoServiceImpl implements VideoService {
             Java2DFrameConverter converter = new Java2DFrameConverter();
             for (int i = 0; i < frameNumbers; i = i + everyFrame) {
                 if (test){
-                    if (i < 23 * everyFrame || i > 70 * everyFrame){
+                    if (i < 57600 || i > 73000){
                         continue;
                     }
                 }
