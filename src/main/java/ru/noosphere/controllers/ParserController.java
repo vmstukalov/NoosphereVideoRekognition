@@ -12,6 +12,8 @@ import ru.noosphere.services.NooSphereUrlService;
 import ru.noosphere.services.ParserService;
 import ru.noosphere.services.VideoService;
 
+import java.io.File;
+
 @Controller
 @RequestMapping("parser")
 public class ParserController {
@@ -36,6 +38,19 @@ public class ParserController {
         video.setFileUrl(videoUrl);
 
         //videoService.save(video);
+
+        File videoFile = new File(videoUrl);
+        String savePath = "/Users/g3/Downloads/" + videoFile.getName();
+        String pathToFrames = "/Users/g3/Downloads/frames/" + videoFile.getName() + "/";
+        videoFile = new File(savePath);
+
+        try {
+            videoService.downloadUsingStream(video, savePath);
+            videoService.separateToFrames(video, pathToFrames, 60);
+        } catch (Exception e){
+            //return "error: Ошибка скачивания видео";
+            e.printStackTrace();
+        }
 
         return video;
     }
