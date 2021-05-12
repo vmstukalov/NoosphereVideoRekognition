@@ -27,7 +27,7 @@
 
     <properties>
         <spring.version>5.0.7.RELEASE</spring.version>
-        <spring.security.version>4.2.0.RELEASE</spring.security.version>
+        <spring.security.version>5.2.10.RELEASE</spring.security.version>
         <thymeleaf.version>3.0.1.RELEASE</thymeleaf.version>
         <hibernate.version>5.2.11.Final</hibernate.version>
         <org.aspectj-version>1.7.4</org.aspectj-version>
